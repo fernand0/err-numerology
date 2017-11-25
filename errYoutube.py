@@ -38,7 +38,7 @@ class ErrYoutube(BotPlugin):
         end = r.find('<', start)
         
         if not msgTemplate:
-            msgTempalte = "%s has %s followers"
+            msgTemplate = "%s has %s followers"
         txt = msgTemplate % (usr, r[start+len(word)+2:end])
 
         if (self._bot.mode == "irc"):
