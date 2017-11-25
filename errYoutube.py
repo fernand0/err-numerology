@@ -10,6 +10,7 @@ class ErrYoutube(BotPlugin):
         """ configuration entries """
         config = {
             'ytUser': '',
+            'msgTemplate': '',
         }
         return config
 
@@ -28,6 +29,7 @@ class ErrYoutube(BotPlugin):
     def subscribers(self, msg, args):
         """Say hello to the world."""
         usr = self._check_config('ytUser')
+        msgTemplate = self._check_config('msgTemplate')
 
         r = str(urllib.request.urlopen('https://www.youtube.com/%s' % usr).read())
         
@@ -35,7 +37,10 @@ class ErrYoutube(BotPlugin):
         start = r.find(word)
         end = r.find('<', start)
         
-        txt = "%s tiene %s suscriptores, cabrones" % (usr, r[start+len(word)+2:end])
+        if not msgTemplate:
+            msgTempalte = "%s has %s followers"
+        txt = msgTemplate % (usr, r[start+len(word)+2:end])
+
         if (self._bot.mode == "irc"):
             room = self.build_identifier('#blogalia')
             self.send(room, txt)
