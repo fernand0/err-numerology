@@ -4,7 +4,13 @@ import urllib.request
 
 
 class ErrYoutube(BotPlugin):
-    """Example 'Hello, world!' plugin for Errbot."""
+    """
+    A very basic module to check the number of subscribers of some user.
+    It expects to have the interface in Spanish.  For other languages, you 
+    can try changing the line:
+
+        word = 'suscriptores'
+    """
 
     def get_configuration_template(self):
         """ configuration entries """
