@@ -17,6 +17,7 @@ class ErrYoutube(BotPlugin):
         config = {
             'ytUser': '',
             'msgTemplate': '',
+            'channel': '#someChannel',
         }
         return config
 
@@ -36,6 +37,8 @@ class ErrYoutube(BotPlugin):
         """Say hello to the world."""
         usr = self._check_config('ytUser')
         msgTemplate = self._check_config('msgTemplate')
+        chan = self._check_config('channel')
+ 
 
         r = str(urllib.request.urlopen('https://www.youtube.com/%s' % usr).read())
         
@@ -48,9 +51,8 @@ class ErrYoutube(BotPlugin):
         txt = msgTemplate % (usr, r[start+len(word)+2:end])
 
         if (self._bot.mode == "irc"):
-            room = self.build_identifier('#blogalia')
+            room = self.build_identifier(chan)
             self.send(room, txt)
         else: 
             yield(txt)
-
 
