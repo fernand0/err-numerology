@@ -3,7 +3,7 @@ import subprocess
 import urllib.request
 
 
-class ErrYoutube(BotPlugin):
+class ErrNumerology(BotPlugin):
     """
     A very basic module to check the number of subscribers of some user.
     It expects to have the interface in Spanish.  For other languages, you 
@@ -49,6 +49,29 @@ class ErrYoutube(BotPlugin):
         if not msgTemplate:
             msgTemplate = "%s has %s followers"
         txt = msgTemplate % (usr, r[start+len(word)+2:end])
+
+        if (self._bot.mode == "irc"):
+            room = self.build_identifier(chan)
+            self.send(room, txt)
+        else: 
+            yield(txt)
+
+    @botcmd
+    def followers(self, msg, args):
+        """Say hello to the world."""
+        usr = self._check_config('ytUser')
+        msgTemplate = '' # self._check_config('msgTemplate')
+        chan = self._check_config('channel')
+ 
+
+        r = str(urllib.request.urlopen('https://twitter.com/%s' % usr).read())
+        
+        word = 'Seguidores'
+        end = r.find(word)
+        start = r.rfind('"', 0, end)
+        if not msgTemplate:
+            msgTemplate = "%s has %s followers"
+        txt = msgTemplate % (usr, r[start+1:end])
 
         if (self._bot.mode == "irc"):
             room = self.build_identifier(chan)

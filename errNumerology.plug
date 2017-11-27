@@ -1,0 +1,9 @@
+[Core]
+Name = ErrNumerology
+Module = errNumerology
+    
+[Documentation]
+Description = An Err plugin to show basic information of some social accounts
+
+[Python]
+Version = 3

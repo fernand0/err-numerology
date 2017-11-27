@@ -1,9 +1,0 @@
-[Core]
-Name = ErrYoutube
-Module = errYoutube
-    
-[Documentation]
-Description = An Err plugin to show basic information of a Youtube account
-
-[Python]
-Version = 3
