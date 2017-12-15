@@ -1,4 +1,4 @@
-from errbot import BotPlugin, botcmd
+from errbot import BotPlugin, botcmd, backends
 import subprocess
 import urllib.request
 
@@ -50,7 +50,9 @@ class ErrNumerology(BotPlugin):
             msgTemplate = "%s has %s followers"
         txt = msgTemplate % (usr, r[start+len(word)+2:end])
 
-        if (self._bot.mode == "irc"):
+        yield(msg)
+        self.log.info("msg %s type %s" % (msg, type(msg)))
+        if (self._bot.mode == "irc") and isinstance(msg, backends.base.Message):
             room = self.build_identifier(chan)
             self.send(room, txt)
         else: 
@@ -73,7 +75,7 @@ class ErrNumerology(BotPlugin):
             msgTemplate = "%s has %s followers"
         txt = msgTemplate % (usr, r[start+1:end])
 
-        if (self._bot.mode == "irc"):
+        if (self._bot.mode == "irc") and isinstance(msg, backends.base.Message):
             room = self.build_identifier(chan)
             self.send(room, txt)
         else: 
