@@ -35,6 +35,7 @@ class ErrNumerology(BotPlugin):
     @botcmd
     def subscribers(self, msg, args):
         """Say hello to the world."""
+        yield args
         usr = self._check_config('ytUser')
         msgTemplate = self._check_config('msgTemplate')
         chan = self._check_config('channel')
