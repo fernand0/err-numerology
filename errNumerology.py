@@ -34,13 +34,12 @@ class ErrNumerology(BotPlugin):
 
     @botcmd(split_args_with=None)
     def subscribers(self, msg, args):
-        """Say hello to the world."""
-        yield args
-        yield type(args)
+        """Subscribers in YouTube"""
         if args: 
             usr = args[0]
         else: 
             usr = self._check_config('ytUser')
+        yield "Looking for the subscribers of %s" % usr
         msgTemplate = self._check_config('msgTemplate')
         chan = self._check_config('channel')
  
@@ -63,10 +62,15 @@ class ErrNumerology(BotPlugin):
         else: 
             yield(txt)
 
-    @botcmd
+    @botcmd(split_args_with=None)
     def followers(self, msg, args):
-        """Say hello to the world."""
-        usr = self._check_config('ytUser')
+        """Followers in Twiter"""
+        if args: 
+            usr = args[0]
+        else: 
+            usr = self._check_config('ytUser')
+        yield "Looking for the followers of %s" % usr
+
         msgTemplate = '' # self._check_config('msgTemplate')
         chan = self._check_config('channel')
  
