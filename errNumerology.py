@@ -32,12 +32,15 @@ class ErrNumerology(BotPlugin):
             else:
                 return None
 
-    @botcmd
+    @botcmd(split_args_with=None)
     def subscribers(self, msg, args):
         """Say hello to the world."""
         yield args
         yield type(args)
-        usr = self._check_config('ytUser')
+        if len(args)>0: 
+            usr = args[1]
+        else: 
+            usr = self._check_config('ytUser')
         msgTemplate = self._check_config('msgTemplate')
         chan = self._check_config('channel')
  
