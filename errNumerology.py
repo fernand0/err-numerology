@@ -37,8 +37,8 @@ class ErrNumerology(BotPlugin):
         """Say hello to the world."""
         yield args
         yield type(args)
-        if len(args)>0: 
-            usr = args[1]
+        if args: 
+            usr = args[0]
         else: 
             usr = self._check_config('ytUser')
         msgTemplate = self._check_config('msgTemplate')
