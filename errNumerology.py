@@ -37,7 +37,10 @@ class ErrNumerology(BotPlugin):
         """Subscribers in YouTube"""
         self.log.debug("Args %s %s"%(args,type(args)))
         if args: 
-            usr = args[0]
+            if isinstance(arg, str):
+                usr = args
+            else:
+                usr = args[0]
         else: 
             usr = self._check_config('ytUser')
         yield "Looking for the subscribers of %s" % usr
