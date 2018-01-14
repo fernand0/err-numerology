@@ -37,7 +37,7 @@ class ErrNumerology(BotPlugin):
         """Subscribers in YouTube"""
         self.log.debug("Args %s %s"%(args,type(args)))
         if args: 
-            if isinstance(arg, str):
+            if isinstance(args, str):
                 usr = args
             else:
                 usr = args[0]
