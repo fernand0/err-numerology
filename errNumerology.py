@@ -70,7 +70,10 @@ class ErrNumerology(BotPlugin):
     def followers(self, msg, args):
         """Followers in Twiter"""
         if args: 
-            usr = args[0]
+            if isinstance(args, str):
+                usr = args
+            else:
+                usr = args[0]
         else: 
             usr = self._check_config('ytUser')
         yield "Looking for the followers of %s" % usr
